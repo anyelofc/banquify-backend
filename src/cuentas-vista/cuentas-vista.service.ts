@@ -21,7 +21,8 @@ export class CuentasVistaService {
       cuentasVista.id = this.cuentasVistas.length + 100000;
       cuentasVista.idUsuario = createCuentasVistaDto.idUsuario;
       cuentasVista.saldo = 0;
-      cuentasVista.habilitada = createCuentasVistaDto.habilitada;
+      cuentasVista.habilitada = createCuentasVistaDto.habilitada
+      cuentasVista.historialTransacciones = [];
       this.cuentasVistas.push(cuentasVista);
       return cuentasVista;
     }

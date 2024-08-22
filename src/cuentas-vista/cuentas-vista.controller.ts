@@ -69,6 +69,8 @@ export class CuentasVistaController {
     }
   }
 
+  @ApiResponse({ status: 200, description: 'Cuenta vista eliminada.' })
+  @ApiResponse({ status: 404, description: 'Cuenta vista no encontrada.' }) 
   @ApiOperation({ summary: 'Eliminar cuenta vista por id.' })
   @Delete(':idCuenta')
   remove(@Param('idCuenta') idCuenta: number, @Res() res: Response) {
