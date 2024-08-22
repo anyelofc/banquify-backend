@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Transacciones } from "src/transacciones/entities/transaccione.entity";
 
 export class CuentasVista {
 
@@ -8,6 +9,8 @@ export class CuentasVista {
     public id: number;
     @ApiProperty()
     public saldo: number;
+    @ApiProperty()
+    historialTransacciones: Transacciones[];
     @ApiProperty()
     public habilitada: boolean;
 
