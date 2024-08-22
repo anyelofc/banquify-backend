@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
+import { CuentasVista } from 'src/cuentas-vista/entities/cuentas-vista.entity';
 
 @Injectable()
 export class UsuariosService {
@@ -19,6 +20,7 @@ export class UsuariosService {
       usuario.correoElectronico = createUsuarioDto.correoElectronico;
       usuario.contrasena = createUsuarioDto.contrasena;
       usuario.puntosAcumulados = 0;
+     // usuario.cuentaVista = "";
       this.usuarios.push(usuario);
       return usuario;
     }
@@ -64,4 +66,15 @@ export class UsuariosService {
     }
     return false;
   }
+
+  // asignarCuetnaVista(idUsuario: number, cuentaVista: CuentasVista) {
+  //   const usuario = this.findOne(idUsuario);
+  //   if (usuario) {
+  //     usuario.cuentaVista = cuentaVista;
+  //     this.usuarios[idUsuario] = usuario;
+  //     return usuario;
+  //   }else{
+  //     return null;
+  //   }
+  // }
 }

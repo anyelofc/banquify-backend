@@ -2,13 +2,14 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Query } from '@
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import { ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import e, { Response } from 'express';
 
 @Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
+  @ApiOperation({ summary: 'Crear usuario.' })
   @ApiResponse({ status: 201, description: 'Usuario creado.' })
   @ApiResponse({ status: 400, description: 'El correo electrónico ya está registrado.' })
   @Post()
@@ -21,12 +22,14 @@ export class UsuariosController {
     }
   }
 
+  @ApiOperation({ summary: 'Muestra todos los usuarios existentes.' })
   @ApiQuery({ name: 'nombre', required: false })
   @Get()
   findAll(@Query('nombre') nombre: string) {
         return this.usuariosService.findAll(nombre);
   }
 
+  @ApiOperation({ summary: 'Buscar usuario por id. ' })
   @ApiResponse({ status: 200, description: 'Usuario encontrado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Get(':id')
@@ -39,6 +42,7 @@ export class UsuariosController {
     }
   }
 
+  @ApiOperation({ summary: 'Actualizar usuario por id.' })
   @ApiResponse({ status: 200, description: 'Usuario actualizado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Patch(':id')
@@ -51,6 +55,7 @@ export class UsuariosController {
     }
   }
 
+  @ApiOperation({ summary: 'Eliminar usuario por id.' })
   @ApiResponse({ status: 200, description: 'Usuario eliminado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Delete(':id')
